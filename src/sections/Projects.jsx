@@ -92,11 +92,7 @@ export const Projects = () => {
       id='projects'
       ref={sceneRef}
       className='relative text-white'
-      style={{
-        height: `${100 * projects.length}vh`,
-        backgroundColor: activeProject.bgColor,
-        transition: 'background-color 600ms ease',
-      }}
+      style={{ height: `${100 * projects.length}vh` }}
     >
       {/* Top / bottom fades */}
       <div className='absolute top-0 left-0 right-0 h-48 z-30 pointer-events-none'
@@ -104,17 +100,22 @@ export const Projects = () => {
       <div className='absolute bottom-0 left-0 right-0 h-48 z-30 pointer-events-none'
         style={{ background: 'linear-gradient(to top, black, transparent)' }} />
 
-      {/* Sticky viewport */}
-      <div className='sticky top-0 h-screen overflow-hidden flex flex-col'>
+      {/* Sticky viewport — background lives here (only 100vh repaint, not 400vh) */}
+      <div className='sticky top-0 h-screen overflow-hidden flex flex-col'
+        style={{
+          backgroundColor: activeProject.bgColor,
+          transition: 'background-color 600ms ease',
+        }}
+      >
 
         {/* Orbs */}
         <motion.div className='absolute -top-40 -left-40 w-150 h-150 rounded-full pointer-events-none z-0'
-          style={{ background: 'radial-gradient(circle, #1cd8d2 0%, #302b63 60%, transparent 80%)', filter: 'blur(80px)' }}
+          style={{ background: 'radial-gradient(circle, #1cd8d2 0%, #302b63 60%, transparent 80%)', filter: 'blur(80px)', willChange: 'transform' }}
           animate={{ scale: [1, 1.3, 1], opacity: [0.35, 0.6, 0.35] }}
           transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
         />
         <motion.div className='absolute -bottom-40 -right-40 w-150 h-150 rounded-full pointer-events-none z-0'
-          style={{ background: 'radial-gradient(circle, #ec4899 0%, #3b82f6 55%, transparent 80%)', filter: 'blur(80px)' }}
+          style={{ background: 'radial-gradient(circle, #ec4899 0%, #3b82f6 55%, transparent 80%)', filter: 'blur(80px)', willChange: 'transform' }}
           animate={{ scale: [1, 1.4, 1], opacity: [0.25, 0.5, 0.25] }}
           transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
         />

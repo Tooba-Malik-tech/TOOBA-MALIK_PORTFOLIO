@@ -23,7 +23,7 @@ export const Navbar = () => {
       setScrolled(window.scrollY > 50);
       setMenuOpen(false);
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 

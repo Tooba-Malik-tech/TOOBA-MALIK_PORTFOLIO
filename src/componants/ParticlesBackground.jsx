@@ -6,7 +6,9 @@ export const ParticlesBackground = () => {
         const canvas = canvasRef.current;
         const ctx = canvas.getContext('2d');
         let particles = [];
-        const particleCount = 50;
+        const isMobile = window.matchMedia('(pointer: coarse)').matches;
+        const particleCount = isMobile ? 20 : 50;
+        const shadowBlur = isMobile ? 0 : 10;
         const colors = ["rgba(255, 255, 255, 0.7)"];
 
         class Particle {
@@ -21,7 +23,7 @@ export const ParticlesBackground = () => {
             draw() {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.shadowBlur = 10;
+                ctx.shadowBlur = shadowBlur;
                 ctx.shadowColor = this.color;
                 ctx.fillStyle = this.color;
                 ctx.fill();

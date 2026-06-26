@@ -1,7 +1,13 @@
 @import "tailwindcss";
-body{
+html {
+  scroll-behavior: smooth;
+  overscroll-behavior: none;
+}
+body {
   font-family: 'Poppins', sans-serif;
   cursor: none;
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: touch;
 }
 h1,h2{
   font-family: 'Roboto', sans-serif;
@@ -10,4 +16,7 @@ h1,h2{
   .gradient{
     background: linear-gradient(-45deg ,#302b63 , #00bf8f, #1cd3d2);
   }
+}
+@media (pointer: coarse) {
+  body { cursor: auto; }
 }

@@ -34,7 +34,7 @@ export const Home = () => {
       {/* Top-left orb */}
       <motion.div
         className="absolute -top-40 -left-40 w-150 h-150 rounded-full"
-        style={{ background: 'radial-gradient(circle, #1cd8d2 0%, #302b63 60%, transparent 80%)', filter: 'blur(80px)' }}
+        style={{ background: 'radial-gradient(circle, #1cd8d2 0%, #302b63 60%, transparent 80%)', filter: 'blur(80px)', willChange: 'transform' }}
         animate={{ scale: [1, 1.3, 1], x: [0, 40, 0], y: [0, 30, 0], opacity: [0.55, 0.85, 0.55] }}
         transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
       />
@@ -42,7 +42,7 @@ export const Home = () => {
       {/* Bottom-right orb */}
       <motion.div
         className="absolute -bottom-40 -right-40 w-150 h-150 rounded-full"
-        style={{ background: 'radial-gradient(circle, #ec4899 0%, #3b82f6 55%, transparent 80%)', filter: 'blur(80px)' }}
+        style={{ background: 'radial-gradient(circle, #ec4899 0%, #3b82f6 55%, transparent 80%)', filter: 'blur(80px)', willChange: 'transform' }}
         animate={{ scale: [1, 1.4, 1], x: [0, -40, 0], y: [0, -30, 0], opacity: [0.5, 0.8, 0.5] }}
         transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
       />
@@ -50,7 +50,7 @@ export const Home = () => {
       {/* Center orb */}
       <motion.div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-100 h-100 rounded-full"
-        style={{ background: 'radial-gradient(circle, #7c3aed 0%, #1e1b4b 60%, transparent 80%)', filter: 'blur(90px)' }}
+        style={{ background: 'radial-gradient(circle, #7c3aed 0%, #1e1b4b 60%, transparent 80%)', filter: 'blur(90px)', willChange: 'transform' }}
         animate={{ scale: [1, 1.5, 1], opacity: [0.3, 0.6, 0.3] }}
         transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 3 }}
       />
@@ -81,6 +81,7 @@ export const Home = () => {
                   width: '140px', height: '140px', borderRadius: '50%',
                   background: 'conic-gradient(from 0deg, transparent 60%, #ec4899 80%, #f9a8d4 100%)',
                   filter: 'drop-shadow(0 0 8px rgba(236,72,153,0.8))',
+                  willChange: 'transform',
                 }}
                 animate={{ rotate: 360 }}
                 transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
@@ -95,6 +96,7 @@ export const Home = () => {
                   width: '118px', height: '118px', borderRadius: '50%',
                   background: 'conic-gradient(from 0deg, transparent 60%, #3b82f6 80%, #93c5fd 100%)',
                   filter: 'drop-shadow(0 0 6px rgba(59,130,246,0.8))',
+                  willChange: 'transform',
                 }}
                 animate={{ rotate: -360 }}
                 transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
