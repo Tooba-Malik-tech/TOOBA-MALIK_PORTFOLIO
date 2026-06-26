@@ -66,6 +66,8 @@ const typeColors = {
   'Academic': { bg: 'rgba(168,85,247,0.12)', border: 'rgba(168,85,247,0.35)', text: '#d8b4fe' },
 }
 
+const isTouch = typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches
+
 const ExperienceCard = ({ exp, index }) => {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
@@ -187,12 +189,14 @@ const ExperienceCard = ({ exp, index }) => {
           }}
         >
           {/* Pulse ring */}
-          <motion.div
-            className='absolute inset-0 rounded-full'
-            style={{ border: `2px solid ${exp.color}` }}
-            animate={{ scale: [1, 1.8, 1], opacity: [0.6, 0, 0.6] }}
-            transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
-          />
+          {!isTouch && (
+            <motion.div
+              className='absolute inset-0 rounded-full'
+              style={{ border: `2px solid ${exp.color}` }}
+              animate={{ scale: [1, 1.8, 1], opacity: [0.6, 0, 0.6] }}
+              transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
+            />
+          )}
         </motion.div>
       </div>
 
@@ -223,16 +227,16 @@ export const Experience = () => {
 
       {/* Top-left teal orb */}
       <motion.div className='absolute -top-40 -left-40 w-150 h-150 rounded-full pointer-events-none'
-        style={{ background: 'radial-gradient(circle, #1cd8d2 0%, #302b63 60%, transparent 80%)', filter: 'blur(80px)' }}
-        animate={{ scale: [1, 1.3, 1], x: [0, 40, 0], y: [0, 30, 0], opacity: [0.4, 0.7, 0.4] }}
-        transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
+        style={{ background: 'radial-gradient(circle, #1cd8d2 0%, #302b63 60%, transparent 80%)', filter: 'blur(80px)', willChange: isTouch ? 'auto' : 'transform' }}
+        animate={isTouch ? {} : { scale: [1, 1.3, 1], x: [0, 40, 0], y: [0, 30, 0], opacity: [0.4, 0.7, 0.4] }}
+        transition={isTouch ? {} : { duration: 7, repeat: Infinity, ease: 'easeInOut' }}
       />
 
       {/* Bottom-right pink orb */}
       <motion.div className='absolute -bottom-40 -right-40 w-150 h-150 rounded-full pointer-events-none'
-        style={{ background: 'radial-gradient(circle, #ec4899 0%, #3b82f6 55%, transparent 80%)', filter: 'blur(80px)' }}
-        animate={{ scale: [1, 1.4, 1], x: [0, -40, 0], y: [0, -30, 0], opacity: [0.35, 0.65, 0.35] }}
-        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
+        style={{ background: 'radial-gradient(circle, #ec4899 0%, #3b82f6 55%, transparent 80%)', filter: 'blur(80px)', willChange: isTouch ? 'auto' : 'transform' }}
+        animate={isTouch ? {} : { scale: [1, 1.4, 1], x: [0, -40, 0], y: [0, -30, 0], opacity: [0.35, 0.65, 0.35] }}
+        transition={isTouch ? {} : { duration: 8, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
       />
 
       <div className='relative z-10 max-w-5xl mx-auto px-6'>

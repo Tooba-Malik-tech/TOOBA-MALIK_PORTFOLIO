@@ -15,6 +15,8 @@ const stats = [
   { label: 'Focus',      value: 'UI/UX & NLP' },
 ]
 
+const isTouch = typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches
+
 export const About = () => {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-100px' })
@@ -52,28 +54,28 @@ export const About = () => {
       <div className='absolute bottom-0 left-0 right-0 h-48 z-10 pointer-events-none'
         style={{ background: 'linear-gradient(to top, black, transparent)' }} />
 
-      {/* Top-right orb — teal/purple (same as Home) */}
+      {/* Top-right orb */}
       <motion.div
         className='absolute -top-40 -right-40 w-150 h-150 rounded-full pointer-events-none'
-        style={{ background: 'radial-gradient(circle, #1cd8d2 0%, #302b63 60%, transparent 80%)', filter: 'blur(80px)', willChange: 'transform' }}
-        animate={{ scale: [1, 1.3, 1], x: [0, -40, 0], y: [0, 30, 0], opacity: [0.55, 0.85, 0.55] }}
-        transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
+        style={{ background: 'radial-gradient(circle, #1cd8d2 0%, #302b63 60%, transparent 80%)', filter: 'blur(80px)', willChange: isTouch ? 'auto' : 'transform' }}
+        animate={isTouch ? {} : { scale: [1, 1.3, 1], x: [0, -40, 0], y: [0, 30, 0], opacity: [0.55, 0.85, 0.55] }}
+        transition={isTouch ? {} : { duration: 7, repeat: Infinity, ease: 'easeInOut' }}
       />
 
-      {/* Bottom-left orb — pink/blue (same as Home) */}
+      {/* Bottom-left orb */}
       <motion.div
         className='absolute -bottom-40 -left-40 w-150 h-150 rounded-full pointer-events-none'
-        style={{ background: 'radial-gradient(circle, #ec4899 0%, #3b82f6 55%, transparent 80%)', filter: 'blur(80px)', willChange: 'transform' }}
-        animate={{ scale: [1, 1.4, 1], x: [0, 40, 0], y: [0, -30, 0], opacity: [0.5, 0.8, 0.5] }}
-        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
+        style={{ background: 'radial-gradient(circle, #ec4899 0%, #3b82f6 55%, transparent 80%)', filter: 'blur(80px)', willChange: isTouch ? 'auto' : 'transform' }}
+        animate={isTouch ? {} : { scale: [1, 1.4, 1], x: [0, 40, 0], y: [0, -30, 0], opacity: [0.5, 0.8, 0.5] }}
+        transition={isTouch ? {} : { duration: 8, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
       />
 
-      {/* Center orb — violet accent (same as Home) */}
+      {/* Center orb */}
       <motion.div
         className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-100 h-100 rounded-full pointer-events-none'
-        style={{ background: 'radial-gradient(circle, #7c3aed 0%, #1e1b4b 60%, transparent 80%)', filter: 'blur(90px)', willChange: 'transform' }}
-        animate={{ scale: [1, 1.5, 1], opacity: [0.3, 0.6, 0.3] }}
-        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 3 }}
+        style={{ background: 'radial-gradient(circle, #7c3aed 0%, #1e1b4b 60%, transparent 80%)', filter: 'blur(90px)', willChange: isTouch ? 'auto' : 'transform' }}
+        animate={isTouch ? {} : { scale: [1, 1.5, 1], opacity: [0.3, 0.6, 0.3] }}
+        transition={isTouch ? {} : { duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 3 }}
       />
 
       <div className='relative z-10 max-w-5xl mx-auto px-6'>

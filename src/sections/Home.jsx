@@ -4,6 +4,8 @@ import { ParticlesBackground } from '../componants/ParticlesBackground'
 import profileImg from "../assets/tooba's_profile_image.jpeg"
 import { FaFacebookF, FaLinkedinIn, FaGithub } from 'react-icons/fa6'
 
+const isTouch = typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches
+
 export const Home = () => {
   const roles = useMemo(() => ["Frontend Developer", "MERN Stack Developer", "NLP Engineer"], []);
   const [index, setIndex] = React.useState(0);
@@ -34,25 +36,25 @@ export const Home = () => {
       {/* Top-left orb */}
       <motion.div
         className="absolute -top-40 -left-40 w-150 h-150 rounded-full"
-        style={{ background: 'radial-gradient(circle, #1cd8d2 0%, #302b63 60%, transparent 80%)', filter: 'blur(80px)', willChange: 'transform' }}
-        animate={{ scale: [1, 1.3, 1], x: [0, 40, 0], y: [0, 30, 0], opacity: [0.55, 0.85, 0.55] }}
-        transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
+        style={{ background: 'radial-gradient(circle, #1cd8d2 0%, #302b63 60%, transparent 80%)', filter: 'blur(80px)', willChange: isTouch ? 'auto' : 'transform' }}
+        animate={isTouch ? {} : { scale: [1, 1.3, 1], x: [0, 40, 0], y: [0, 30, 0], opacity: [0.55, 0.85, 0.55] }}
+        transition={isTouch ? {} : { duration: 7, repeat: Infinity, ease: 'easeInOut' }}
       />
 
       {/* Bottom-right orb */}
       <motion.div
         className="absolute -bottom-40 -right-40 w-150 h-150 rounded-full"
-        style={{ background: 'radial-gradient(circle, #ec4899 0%, #3b82f6 55%, transparent 80%)', filter: 'blur(80px)', willChange: 'transform' }}
-        animate={{ scale: [1, 1.4, 1], x: [0, -40, 0], y: [0, -30, 0], opacity: [0.5, 0.8, 0.5] }}
-        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
+        style={{ background: 'radial-gradient(circle, #ec4899 0%, #3b82f6 55%, transparent 80%)', filter: 'blur(80px)', willChange: isTouch ? 'auto' : 'transform' }}
+        animate={isTouch ? {} : { scale: [1, 1.4, 1], x: [0, -40, 0], y: [0, -30, 0], opacity: [0.5, 0.8, 0.5] }}
+        transition={isTouch ? {} : { duration: 8, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
       />
 
       {/* Center orb */}
       <motion.div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-100 h-100 rounded-full"
-        style={{ background: 'radial-gradient(circle, #7c3aed 0%, #1e1b4b 60%, transparent 80%)', filter: 'blur(90px)', willChange: 'transform' }}
-        animate={{ scale: [1, 1.5, 1], opacity: [0.3, 0.6, 0.3] }}
-        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 3 }}
+        style={{ background: 'radial-gradient(circle, #7c3aed 0%, #1e1b4b 60%, transparent 80%)', filter: 'blur(90px)', willChange: isTouch ? 'auto' : 'transform' }}
+        animate={isTouch ? {} : { scale: [1, 1.5, 1], opacity: [0.3, 0.6, 0.3] }}
+        transition={isTouch ? {} : { duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 3 }}
       />
 
       {/* Bottom fade into About */}

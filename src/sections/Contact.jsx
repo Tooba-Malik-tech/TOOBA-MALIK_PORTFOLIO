@@ -19,6 +19,8 @@ const services = [
   'Consultation',
 ]
 
+const isTouch = typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches
+
 export const Contact = () => {
   const formRef = useRef(null)
   const [form, setForm] = useState({ name: '', email: '', service: '', message: '' })
@@ -88,8 +90,8 @@ export const Contact = () => {
               left: Math.random() * 100 + '%',
               boxShadow: size > 3 ? `0 0 ${size * 3}px rgba(255,255,255,0.6)` : 'none',
             }}
-            animate={{ opacity: [0.1, size > 3 ? 0.9 : 0.6, 0.1], scale: [1, 1.5, 1] }}
-            transition={{
+            animate={isTouch ? {} : { opacity: [0.1, size > 3 ? 0.9 : 0.6, 0.1], scale: [1, 1.5, 1] }}
+            transition={isTouch ? {} : {
               duration: Math.random() * 4 + 2,
               repeat: Infinity,
               ease: 'easeInOut',
@@ -107,15 +109,15 @@ export const Contact = () => {
 
       {/* Top-left teal orb */}
       <motion.div className='absolute -top-40 -left-40 w-150 h-150 rounded-full pointer-events-none'
-        style={{ background: 'radial-gradient(circle, #1cd8d2 0%, #302b63 60%, transparent 80%)', filter: 'blur(80px)' }}
-        animate={{ scale: [1, 1.3, 1], x: [0, 40, 0], y: [0, 30, 0], opacity: [0.4, 0.65, 0.4] }}
-        transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
+        style={{ background: 'radial-gradient(circle, #1cd8d2 0%, #302b63 60%, transparent 80%)', filter: 'blur(80px)', willChange: isTouch ? 'auto' : 'transform' }}
+        animate={isTouch ? {} : { scale: [1, 1.3, 1], x: [0, 40, 0], y: [0, 30, 0], opacity: [0.4, 0.65, 0.4] }}
+        transition={isTouch ? {} : { duration: 7, repeat: Infinity, ease: 'easeInOut' }}
       />
       {/* Bottom-right pink orb */}
       <motion.div className='absolute -bottom-40 -right-40 w-150 h-150 rounded-full pointer-events-none'
-        style={{ background: 'radial-gradient(circle, #ec4899 0%, #3b82f6 55%, transparent 80%)', filter: 'blur(80px)' }}
-        animate={{ scale: [1, 1.4, 1], x: [0, -40, 0], y: [0, -30, 0], opacity: [0.35, 0.6, 0.35] }}
-        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
+        style={{ background: 'radial-gradient(circle, #ec4899 0%, #3b82f6 55%, transparent 80%)', filter: 'blur(80px)', willChange: isTouch ? 'auto' : 'transform' }}
+        animate={isTouch ? {} : { scale: [1, 1.4, 1], x: [0, -40, 0], y: [0, -30, 0], opacity: [0.35, 0.6, 0.35] }}
+        transition={isTouch ? {} : { duration: 8, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
       />
 
       <div className='relative z-10 max-w-6xl mx-auto px-6'>
@@ -179,8 +181,8 @@ export const Contact = () => {
                     left: Math.random() * 100 + '%',
                     opacity: Math.random() * 0.6 + 0.2,
                   }}
-                  animate={{ opacity: [0.2, 0.8, 0.2] }}
-                  transition={{ duration: Math.random() * 3 + 2, repeat: Infinity, ease: 'easeInOut', delay: Math.random() * 2 }}
+                  animate={isTouch ? {} : { opacity: [0.2, 0.8, 0.2] }}
+                  transition={isTouch ? {} : { duration: Math.random() * 3 + 2, repeat: Infinity, ease: 'easeInOut', delay: Math.random() * 2 }}
                 />
               ))}
 
@@ -192,8 +194,8 @@ export const Contact = () => {
                   boxShadow: '0 0 40px rgba(124,58,237,0.4)',
                   left: '15%', top: '50%', transform: 'translateY(-50%)',
                 }}
-                animate={{ y: [0, -8, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+                animate={isTouch ? {} : { y: [0, -8, 0] }}
+                transition={isTouch ? {} : { duration: 4, repeat: Infinity, ease: 'easeInOut' }}
               >
                 <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-44 h-6 rounded-full border border-purple-500/40'
                   style={{ transform: 'translate(-50%, -50%) rotateX(75deg)' }} />
@@ -208,8 +210,8 @@ export const Contact = () => {
                   width: '160px',
                   filter: 'drop-shadow(0 0 24px rgba(236,72,153,0.6))',
                 }}
-                animate={{ y: [0, -16, 0], rotate: [-3, 3, -3] }}
-                transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+                animate={isTouch ? {} : { y: [0, -16, 0], rotate: [-3, 3, -3] }}
+                transition={isTouch ? {} : { duration: 5, repeat: Infinity, ease: 'easeInOut' }}
               />
 
               {/* Gradient overlay bottom */}
